@@ -9,9 +9,11 @@ var playerIn = [];
 var tempA = [];
 var tempB = [];
 var inputReady = false;
+var score = 0;
 
 //Ever 500 ms, doMove is run inside of flashSequence. 
 function flashSequence(){
+	inputReady = false;
 	newColorCode()
 	var i = 0;
 	var seq = setInterval(function(){
@@ -20,9 +22,10 @@ function flashSequence(){
 		if (i >= colorCode.length){
 			clearInterval(seq);
 		}
-	}, 500)
+	}, 700)
 	inputReady = true;
-	inputs()
+	
+	inputs();
 }
 
 //generates a random number between 1 and 4 and adds it to the colorCode array
@@ -60,21 +63,27 @@ function doMove(tileNum){
 			sqr4.classList.remove("flash");
 		}
 		
-	}, 300);
+	}, 500);
 	
 }
 
 
 
 function checkMoves(){
+	inputReady = false;
 	for (var i = 0; i < playerIn.length; i++){
-		if (colorCode[i] == playerIn[i]){
+		if (colorCode[i] == playerIn[i] && playerIn.length < colorCode.length){
 			// playerIn = [];
 			inputReady = true;
 			inputs();
 		}
-		else {
-			msg.innerHTML = "<h2>You Lost!</h2>";
+		else if (colorCode[i] == playerIn[i] && playerIn.length >= colorCode.length){
+			score++
+			inputReady = false;
+			// flashSequence();
+		}
+		else if (colorCode[i] != playerIn[i]){
+			msg.innerHTML = "<h2>You Lost! Your score is" + score + "</h2>";
 			
 		}
 	}
@@ -82,64 +91,69 @@ function checkMoves(){
 
 
 playBtn.addEventListener("click", function(){
-	// colorCode = [];
-	// playerIn = [];
+	colorCode = [];
+	playerIn = [];
+	msg.innerHTML = "<h2>Test</h2>";
 	flashSequence();
 	
 	
 });
 
-function inputs(){
+
 	
-if(inputReady == true){
+
+function inputs(){
+	if(inputReady == true){
 	sqr1.addEventListener("click", function(){
-		// tempA.push(1);
-		// tempB = tempA.slice(tempA.length - 1);
+		tempA.push(1);
+		tempB = tempA.slice(tempA.length - 1);
 		// Array.prototype.push.apply(playerIn, tempB);
-		// playerIn = playerIn.concat(tempA);
+		playerIn = playerIn.concat(tempB);
 		// tempA = [];
-		playerIn.push(1);
-		inputReady = false;
+		// playerIn.push(1);
+		
+		
 		checkMoves();
 	});
 
 	sqr2.addEventListener("click", function(){
-		// tempA.push(2);
-		// tempB = tempA.slice(tempA.length - 1);
+		tempA.push(2);
+		tempB = tempA.slice(tempA.length - 1);
 		// Array.prototype.push.apply(playerIn, tempB);
-		// playerIn = playerIn.concat(tempA);
+		playerIn = playerIn.concat(tempB);
 		// tempA = [];
-		playerIn.push(2);
-		inputReady = false;
+		// playerIn.push(2);
+		
 		checkMoves();
 	});
 
 	sqr3.addEventListener("click", function(){
-		// tempA.push(3);
-		// tempB = tempA.slice(tempA.length - 1);
+		tempA.push(3);
+		tempB = tempA.slice(tempA.length - 1);
 		// Array.prototype.push.apply(playerIn, tempB);
-		// playerIn = playerIn.concat(tempA);
+		playerIn = playerIn.concat(tempB);
 		// tempA = [];
-		playerIn.push(3);
-		inputReady = false;
+		// playerIn.push(3);
+		
 		checkMoves();
 	});
 
 	sqr4.addEventListener("click", function(){
-		// tempA.push(4);
-		// tempB = tempA.slice(tempA.length - 1);
+		tempA.push(4);
+		tempB = tempA.slice(tempA.length - 1);
 		// Array.prototype.push.apply(playerIn, tempB);
-		// playerIn = playerIn.concat(tempA);
+		playerIn = playerIn.concat(tempB);
 		// tempA = [];
-		playerIn.push(4);
-		inputReady = false;
+		// playerIn = [];
+		// playerIn.push(4);
+		
 		checkMoves();
 	});	
 
 	}
-	
-
 }
+
+
 
 
 
