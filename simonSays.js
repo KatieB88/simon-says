@@ -9,11 +9,12 @@ var playerIn = [];
 var tempA = [];
 var tempB = [];
 var inputReady = false;
-var score = 0;
+var score = -1;
 var x = 0;
 
 //Ever 500 ms, doMove is run inside of flashSequence. 
 function flashSequence(){
+	score++;
 	inputReady = false;
 	newColorCode()
 	var i = 0;
@@ -75,19 +76,21 @@ function checkMoves(){
 	for (var i = 0; i < playerIn.length; i++){
 		if (colorCode[i] == playerIn[i] && playerIn.length < colorCode.length){
 			inputReady = true;
+			
 			// inputs();
 		}
 		else if (colorCode[i] == playerIn[i] && playerIn.length == colorCode.length){
-			score++
-			playerIn = [];
+			
 			inputReady = false;
+			
 			// flashSequence();
 		}
 		else if (colorCode[i] != playerIn[i]){
-			msg.innerHTML = "<h2>You Lost! Your score is" + score + "</h2>";
+			msg.innerHTML = "<h2>You Lost! Your score is " + score + "</h2>";
 			
 		}
 	}
+
 }
 
 
