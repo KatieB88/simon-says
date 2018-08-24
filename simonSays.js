@@ -26,8 +26,7 @@ function flashSequence(){
 		}
 	}, 700)
 	inputReady = true;
-	
-	
+	inputs();
 }
 
 //generates a random number between 1 and 4 and adds it to the colorCode array
@@ -80,10 +79,10 @@ function checkMoves(){
 			// inputs();
 		}
 		else if (colorCode[i] == playerIn[i] && playerIn.length == colorCode.length){
-			
+			playerIn = [];
 			inputReady = false;
 			
-			// flashSequence();
+			flashSequence();
 		}
 		else if (colorCode[i] != playerIn[i]){
 			msg.innerHTML = "<h2>You Lost! Your score is " + score + "</h2>";
@@ -95,17 +94,14 @@ function checkMoves(){
 
 
 playBtn.addEventListener("click", function(){
-	// colorCode = [];
+	colorCode = [];
 	playerIn = [];
 	msg.innerHTML = "<h2>Test</h2>";
 	flashSequence();
-	inputs();
+	
 	
 });
 
-
-//this is adding the Event listener EVERY TIME it is clicked, so every time it is clicked
-//it adds another, and so it will execute the code inside it multiple times
 
 function inputs(){
 	sqr1.onclick = function(){
@@ -138,26 +134,6 @@ function inputs(){
 	}
 }
 	
-
-	//  function func2(){
-	// 	playerIn.push(2);
-	// 	console.log(playerIn);
-	// 	checkMoves();
-
-	// }
-
-	// function func3(){
-	// 	playerIn.push(3);
-	// 	console.log(playerIn);
-	// 	checkMoves();
-	// }
-
-	// function func4(){
-	// 	playerIn.push(4);
-	// 	console.log(playerIn);
-	// 	checkMoves();
-	// }	
-
 
 
 
