@@ -10,6 +10,7 @@ var tempA = [];
 var tempB = [];
 var inputReady = false;
 var score = 0;
+var x = 0;
 
 //Ever 500 ms, doMove is run inside of flashSequence. 
 function flashSequence(){
@@ -25,14 +26,14 @@ function flashSequence(){
 	}, 700)
 	inputReady = true;
 	
-	inputs();
+	
 }
 
 //generates a random number between 1 and 4 and adds it to the colorCode array
 function newColorCode(){
 	var randNum = Math.floor(Math.random() * 4) + 1;
 	colorCode.push(randNum);
-	console.log(colorCode);
+	
 }
 
 
@@ -73,12 +74,12 @@ function checkMoves(){
 	inputReady = false;
 	for (var i = 0; i < playerIn.length; i++){
 		if (colorCode[i] == playerIn[i] && playerIn.length < colorCode.length){
-			// playerIn = [];
 			inputReady = true;
-			inputs();
+			// inputs();
 		}
-		else if (colorCode[i] == playerIn[i] && playerIn.length >= colorCode.length){
+		else if (colorCode[i] == playerIn[i] && playerIn.length == colorCode.length){
 			score++
+			playerIn = [];
 			inputReady = false;
 			// flashSequence();
 		}
@@ -91,67 +92,68 @@ function checkMoves(){
 
 
 playBtn.addEventListener("click", function(){
-	colorCode = [];
+	// colorCode = [];
 	playerIn = [];
 	msg.innerHTML = "<h2>Test</h2>";
 	flashSequence();
-	
+	inputs();
 	
 });
 
 
-	
+//this is adding the Event listener EVERY TIME it is clicked, so every time it is clicked
+//it adds another, and so it will execute the code inside it multiple times
 
 function inputs(){
-	if(inputReady == true){
-	sqr1.addEventListener("click", function(){
-		tempA.push(1);
-		tempB = tempA.slice(tempA.length - 1);
-		// Array.prototype.push.apply(playerIn, tempB);
-		playerIn = playerIn.concat(tempB);
-		// tempA = [];
-		// playerIn.push(1);
-		
-		
+	sqr1.onclick = function(){
+		if(inputReady == true){
+			playerIn.push(1);
+		console.log(playerIn);
 		checkMoves();
-	});
-
-	sqr2.addEventListener("click", function(){
-		tempA.push(2);
-		tempB = tempA.slice(tempA.length - 1);
-		// Array.prototype.push.apply(playerIn, tempB);
-		playerIn = playerIn.concat(tempB);
-		// tempA = [];
-		// playerIn.push(2);
-		
+		}
+	}
+	sqr2.onclick = function(){
+		if(inputReady == true){
+			playerIn.push(2);
+		console.log(playerIn);
 		checkMoves();
-	});
-
-	sqr3.addEventListener("click", function(){
-		tempA.push(3);
-		tempB = tempA.slice(tempA.length - 1);
-		// Array.prototype.push.apply(playerIn, tempB);
-		playerIn = playerIn.concat(tempB);
-		// tempA = [];
-		// playerIn.push(3);
-		
+		}
+	}
+	sqr3.onclick = function(){
+		if(inputReady == true){
+			playerIn.push(3);
+		console.log(playerIn);
 		checkMoves();
-	});
-
-	sqr4.addEventListener("click", function(){
-		tempA.push(4);
-		tempB = tempA.slice(tempA.length - 1);
-		// Array.prototype.push.apply(playerIn, tempB);
-		playerIn = playerIn.concat(tempB);
-		// tempA = [];
-		// playerIn = [];
-		// playerIn.push(4);
-		
+		}
+	}
+	sqr4.onclick = function(){
+		if(inputReady == true){
+			playerIn.push(4);
+		console.log(playerIn);
 		checkMoves();
-	});	
-
+		}
 	}
 }
+	
+
+	//  function func2(){
+	// 	playerIn.push(2);
+	// 	console.log(playerIn);
+	// 	checkMoves();
+
+	// }
+
+	// function func3(){
+	// 	playerIn.push(3);
+	// 	console.log(playerIn);
+	// 	checkMoves();
+	// }
+
+	// function func4(){
+	// 	playerIn.push(4);
+	// 	console.log(playerIn);
+	// 	checkMoves();
+	// }	
 
 
 
