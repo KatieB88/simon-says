@@ -10,11 +10,12 @@ var tempA = [];
 var tempB = [];
 var inputReady = false;
 var score = -1;
-
+var j = 0;
 
 //Ever 500 ms, doMove is run inside of flashSequence. 
 function flashSequence(){
 	score++;
+	
 	inputReady = false;
 	newColorCode()
 	var i = 0;
@@ -26,7 +27,7 @@ function flashSequence(){
 		}
 	}, 700)
 	inputReady = true;
-	// inputs();
+	
 }
 
 //generates a random number between 1 and 4 and adds it to the colorCode array
@@ -71,27 +72,26 @@ function doMove(tileNum){
 
 function checkMoves(){
 	inputReady = false;
-	for (var i = 0; i < playerIn.length; i++){
-		if (colorCode[i] != playerIn[i]){
+	
+		if (colorCode[j] != playerIn[j]){
 			msg.innerHTML = "<h2>You Lost! Your score is " + score + "</h2>";
 			reset()
 		}
 		
-		else if (colorCode[i] == playerIn[i] && playerIn.length < colorCode.length){
+		else if (colorCode[j] == playerIn[j] && playerIn.length < colorCode.length){
+			j++;
 			inputReady = true;
 			
-			// inputs();
 		}
 
-		else if (colorCode[i] == playerIn[i] && playerIn.length == colorCode.length){
+		else if (colorCode[j] == playerIn[j] && playerIn.length == colorCode.length){
 			playerIn = [];
 			inputReady = false;
-			
+			j = 0;
 			flashSequence();
 		}
 		
-
-	}
+	
 
 }
 
@@ -99,6 +99,7 @@ function reset(){
 	score = -1;
 	colorCode = [];
 	playerIn = [];
+	j = 0;
 }
 
 playBtn.addEventListener("click", function(){
@@ -110,9 +111,9 @@ playBtn.addEventListener("click", function(){
 });
 
 
-// function inputs(){
 	sqr1.onclick = function(){
 		if(inputReady == true){
+		
 		playerIn.push(1);
 		console.log(playerIn);
 		checkMoves();
@@ -120,6 +121,7 @@ playBtn.addEventListener("click", function(){
 	}
 	sqr2.onclick = function(){
 		if(inputReady == true){
+		
 		playerIn.push(2);
 		console.log(playerIn);
 		checkMoves();
@@ -127,6 +129,7 @@ playBtn.addEventListener("click", function(){
 	}
 	sqr3.onclick = function(){
 		if(inputReady == true){
+		
 		playerIn.push(3);
 		console.log(playerIn);
 		checkMoves();
@@ -134,12 +137,13 @@ playBtn.addEventListener("click", function(){
 	}
 	sqr4.onclick = function(){
 		if(inputReady == true){
+		
 		playerIn.push(4);
 		console.log(playerIn);
 		checkMoves();
 		}
 	}
-// }
+
 	
 
 
