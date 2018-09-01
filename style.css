@@ -5,7 +5,7 @@ body{
 .button{
 	display: block;
 	margin: 0 auto;
-	width: 100px;
+	width: 120px;
 }
 
 button{
@@ -15,10 +15,26 @@ button{
 	text-transform: uppercase;
 }
 
+.btn{
+	margin-top: 10px;
+	border-radius: 10px;
+	background-color: black;
+	border-color: white;
+	color: white;
+	width: 120px;
+}
+
+.btn:hover{
+	background-color: #303030;
+	transition: all .2s;
+}
+
+
 #container{
-	max-width: 700px;
+	max-width: 600px;
 	display: block;
 	margin: 0 auto;
+	position: relative;
 }
 
 .square{
@@ -28,6 +44,10 @@ button{
 	float: left;
 	margin: 5%;
 	border-radius: 20px;
+}
+
+.bott{
+	margin-bottom: 0;
 }
 
 .red{
@@ -70,6 +90,16 @@ button{
 	background-color: white;
 }
 
+
 .msg{
+	margin-top: 10px;	
 	color: white;
+	width: 100vw;
+	background-color: black;
+	border-color: black;
+
+}
+
+button:focus{
+	outline: 0;
 }
