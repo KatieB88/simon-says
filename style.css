@@ -34,8 +34,17 @@ button{
 	background-color: red;
 }
 
+.red:active{
+	background-color: #aa2727;
+}
+
 .blue{
 	background-color: blue;
+
+}
+
+.blue:active{
+	background-color: #0d00a3;
 
 }
 
@@ -43,8 +52,18 @@ button{
 	background-color: yellow;
 }
 
+.yellow:active{
+	background-color: #b5b200;
+}
+
+
+
 .green{
 	background-color: green;
+}
+
+.green:active{
+	background-color: #005106;
 }
 
 .flash{

@@ -6,8 +6,6 @@ var sqr4 = document.querySelector(".green");
 var msg = document.querySelector(".msg");
 var colorCode = [];
 var playerIn = [];
-var tempA = [];
-var tempB = [];
 var inputReady = false;
 var score = -1;
 var j = 0;
@@ -20,13 +18,15 @@ function flashSequence(){
 	newColorCode()
 	var i = 0;
 	var seq = setInterval(function(){
+		inputReady = false;
 		doMove(colorCode[i]);
 		i++;
 		if (i >= colorCode.length){
 			clearInterval(seq);
+			inputReady = true;
 		}
 	}, 700)
-	inputReady = true;
+	
 	
 }
 
@@ -39,6 +39,7 @@ function newColorCode(){
 
 
 function doMove(tileNum){
+	
 	if(tileNum == 1){
 		sqr1.classList.add("flash");
 	}
