@@ -1,3 +1,7 @@
+var beep1 = new Audio ('beep1.wav');
+var beep2 = new Audio ('beep2.wav');
+var beep3 = new Audio ('beep3.wav');
+var beep4 = new Audio ('beep4.wav');
 var playBtn = document.querySelector("button");
 var sqr1 = document.querySelector(".blue");
 var sqr2 = document.querySelector(".red");
@@ -42,15 +46,19 @@ function doMove(tileNum){
 	
 	if(tileNum == 1){
 		sqr1.classList.add("flash");
+		beep1.play();
 	}
 	else if(tileNum == 2){
 		sqr2.classList.add("flash");
+		beep2.play();
 	}
 	else if(tileNum == 3){
 		sqr3.classList.add("flash");
+		beep3.play();
 	}
 	else if(tileNum == 4){
 		sqr4.classList.add("flash");
+		beep4.play();
 	}
 	setTimeout(function(){
 		if(tileNum == 1){
@@ -105,7 +113,7 @@ function reset(){
 
 playBtn.addEventListener("click", function(){
 	reset();
-	msg.innerHTML = "<h2>Test</h2>";
+	msg.innerHTML = "";
 	flashSequence();
 	
 	
@@ -117,6 +125,7 @@ playBtn.addEventListener("click", function(){
 		
 		playerIn.push(1);
 		console.log(playerIn);
+		beep1.play();
 		checkMoves();
 		}
 	}
@@ -125,6 +134,7 @@ playBtn.addEventListener("click", function(){
 		
 		playerIn.push(2);
 		console.log(playerIn);
+		beep2.play();
 		checkMoves();
 		}
 	}
@@ -132,6 +142,7 @@ playBtn.addEventListener("click", function(){
 		if(inputReady == true){
 		
 		playerIn.push(3);
+		beep3.play();
 		console.log(playerIn);
 		checkMoves();
 		}
@@ -140,6 +151,7 @@ playBtn.addEventListener("click", function(){
 		if(inputReady == true){
 		
 		playerIn.push(4);
+		beep4.play();
 		console.log(playerIn);
 		checkMoves();
 		}
