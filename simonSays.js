@@ -14,7 +14,7 @@ var inputReady = false;
 var score = -1;
 var j = 0;
 
-//Ever 500 ms, doMove is run inside of flashSequence. 
+//Ever 700 ms, doMove is run inside of flashSequence using setInterval (for loop doesn't work with this). Continues until the length of the colorCode is reached.
 function flashSequence(){
 	score++;
 	
@@ -34,14 +34,14 @@ function flashSequence(){
 	
 }
 
-//generates a random number between 1 and 4 and adds it to the colorCode array
+//generates a random number between 1 and 4 and adds it to the colorCode array, runs inside flashSequence.
 function newColorCode(){
 	var randNum = Math.floor(Math.random() * 4) + 1;
 	colorCode.push(randNum);
 	
 }
 
-
+//checks the number created by newColorCode and adds the class "flash" and plays the corresponding beep noise. Removes class after 500 ms.
 function doMove(tileNum){
 	
 	if(tileNum == 1){
@@ -78,12 +78,17 @@ function doMove(tileNum){
 	
 }
 
-
+//called inside event listeners for each square.
+//checks whether each new response from the user (playerIn[j]) matches the corresponding position in colorCode (colorCode[j])
+//If they don't match, you get a 'you lose' message and reset function is called
+//If they do match but the player input isn't the same length as the colorCode, then 1 is added to the j counter so that the next position along will be compared
+//If they do match and the length of player input and colorCode are the same, the player input is cleared for the next round, j is reset to start again from
+//the 0th position in both arrays, and flashsequence is called (ie. a new round begins)
 function checkMoves(){
 	inputReady = false;
 	
 		if (colorCode[j] != playerIn[j]){
-			msg.innerHTML = "<h2>You Lost! Your score is " + score + "</h2>";
+			msg.innerHTML = "<p>You Lost! Your score is " + score + "</p>";
 			reset()
 		}
 		
@@ -104,6 +109,8 @@ function checkMoves(){
 
 }
 
+
+//puts everything back to how it was before the game started
 function reset(){
 	score = -1;
 	colorCode = [];
@@ -111,51 +118,44 @@ function reset(){
 	j = 0;
 }
 
+//start point for the game- resets everything back to the beginning of game (using reset function) and calls flashsequence to begin the game.
 playBtn.addEventListener("click", function(){
 	reset();
 	msg.innerHTML = "";
 	flashSequence();
-	
-	
 });
 
 
-	sqr1.onclick = function(){
-		if(inputReady == true){
-		
-		playerIn.push(1);
-		console.log(playerIn);
-		beep1.play();
-		checkMoves();
-		}
+//event listeners for each square of the game. Checks the game is ready for player input, then pushes the corresponding tile click number
+//into the playerIn array. Plays the corresponding beep noise, then calls checkMoves()
+sqr1.onclick = function(){
+	if(inputReady == true){	
+	playerIn.push(1);
+	beep1.play();
+	checkMoves();
 	}
-	sqr2.onclick = function(){
-		if(inputReady == true){
-		
-		playerIn.push(2);
-		console.log(playerIn);
-		beep2.play();
-		checkMoves();
-		}
+}
+sqr2.onclick = function(){
+	if(inputReady == true){	
+	playerIn.push(2);
+	beep2.play();
+	checkMoves();
 	}
-	sqr3.onclick = function(){
-		if(inputReady == true){
-		
-		playerIn.push(3);
-		beep3.play();
-		console.log(playerIn);
-		checkMoves();
-		}
+}
+sqr3.onclick = function(){
+	if(inputReady == true){
+	playerIn.push(3);
+	beep3.play();
+	checkMoves();
 	}
-	sqr4.onclick = function(){
-		if(inputReady == true){
-		
-		playerIn.push(4);
-		beep4.play();
-		console.log(playerIn);
-		checkMoves();
-		}
+}
+sqr4.onclick = function(){
+	if(inputReady == true){
+	playerIn.push(4);
+	beep4.play();
+	checkMoves();
 	}
+}
 
 	
 

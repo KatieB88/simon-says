@@ -2,6 +2,8 @@ body{
 	background-color: black;
 }
 
+/* New Game Button */
+
 .button{
 	display: block;
 	margin: 0 auto;
@@ -29,6 +31,7 @@ button{
 	transition: all .2s;
 }
 
+/* Game Tiles */
 
 #container{
 	max-width: 600px;
@@ -76,8 +79,6 @@ button{
 	background-color: #b5b200;
 }
 
-
-
 .green{
 	background-color: green;
 }
@@ -90,6 +91,7 @@ button{
 	background-color: white;
 }
 
+/* You Lose message */
 
 .msg{
 	margin-top: 10px;	
