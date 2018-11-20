@@ -8,6 +8,7 @@ body{
 	display: block;
 	margin: 0 auto;
 	width: 120px;
+	
 }
 
 button{
@@ -97,8 +98,8 @@ button{
 	margin-top: 10px;	
 	color: white;
 	width: 100vw;
-	background-color: black;
-	border-color: black;
+	border: none;
+	background: none;
 
 }
 
