@@ -43,7 +43,7 @@ function flashSequence(){
 
 //generates a random number between 1 and 4 and adds it to the colorCode array, runs inside flashSequence.
 function newColorCode(){
-	var randNum = Math.floor(Math.random() * 4) + 1;
+	var randNum = Math.floor(Math.random() * 4);
 	colorCode.push(colorArr[randNum]);
 	
 }
