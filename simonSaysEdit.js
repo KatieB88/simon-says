@@ -12,7 +12,7 @@ var beep = {
 	red: new Audio ('beep2.wav'),
 	yellow: new Audio ('beep3.wav'),
 	green: new Audio ('beep4.wav')
-};
+}
 
 var sqr = {
 	blue: document.querySelector(".blue"),
@@ -20,6 +20,7 @@ var sqr = {
 	yellow: document.querySelector(".yellow"),
 	green: document.querySelector(".green")
 };
+
 
 //Ever 700 ms, doMove is run inside of flashSequence using setInterval (for loop doesn't work with this). Continues until the length of the colorCode is reached.
 function flashSequence(){
@@ -43,7 +44,7 @@ function flashSequence(){
 
 //generates a random number between 1 and 4 and adds it to the colorCode array, runs inside flashSequence.
 function newColorCode(){
-	var randNum = Math.floor(Math.random() * 4) + 1;
+	var randNum = Math.floor(Math.random() * 4);
 	colorCode.push(colorArr[randNum]);
 	
 }
@@ -101,6 +102,7 @@ function reset(){
 
 //start point for the game- resets everything back to the beginning of game (using reset function) and calls flashsequence to begin the game.
 playBtn.addEventListener("click", function(){
+	
 	reset();
 	msg.innerHTML = "";
 	flashSequence();
@@ -109,6 +111,7 @@ playBtn.addEventListener("click", function(){
 
 //event listeners for each square of the game. Checks the game is ready for player input, then pushes the corresponding tile click number
 //into the playerIn array. Plays the corresponding beep noise, then calls checkMoves()
+
 sqr.blue.onclick = function(){
 	if(inputReady == true){	
 	playerIn.push("blue");
@@ -137,10 +140,6 @@ sqr.green.onclick = function(){
 	checkMoves();
 	}
 }
-
-	
-
-
 
 
 
