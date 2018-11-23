@@ -37,8 +37,6 @@ function flashSequence(){
 			inputReady = true;
 		}
 	}, 700)
-	
-	
 }
 
 //generates a random number between 1 and 4 and adds it to the colorCode array, runs inside flashSequence.
@@ -68,26 +66,22 @@ function doMove(tileKey){
 function checkMoves(){
 	inputReady = false;
 	
-		if (colorCode[j] != playerIn[j]){
-			msg.innerHTML = "<p>You Lost! Your score is " + score + "</p>";
-			reset()
-		}
+	if (colorCode[j] != playerIn[j]){
+		msg.innerHTML = "<p>You Lost! Your score is " + score + "</p>";
+		reset()
+	}
 		
-		else if (colorCode[j] == playerIn[j] && playerIn.length < colorCode.length){
-			j++;
-			inputReady = true;
-			
-		}
+	else if (colorCode[j] == playerIn[j] && playerIn.length < colorCode.length){
+		j++;
+		inputReady = true;			
+	}
 
-		else if (colorCode[j] == playerIn[j] && playerIn.length == colorCode.length){
-			playerIn = [];
-			inputReady = false;
-			j = 0;
-			flashSequence();
-		}
-		
-	
-
+	else if (colorCode[j] == playerIn[j] && playerIn.length == colorCode.length){
+		playerIn = [];
+		inputReady = false;
+		j = 0;
+		flashSequence();
+	}
 }
 
 
@@ -111,31 +105,32 @@ playBtn.addEventListener("click", function(){
 //into the playerIn array. Plays the corresponding beep noise, then calls checkMoves()
 sqr.blue.onclick = function(){
 	if(inputReady == true){	
-	playerIn.push("blue");
-	beep.blue.play();
-	checkMoves();
+		playerIn.push("blue");
+		playBeep("blue");
 	}
 }
 sqr.red.onclick = function(){
 	if(inputReady == true){	
-	playerIn.push("red");
-	beep.red.play();
-	checkMoves();
+		playerIn.push("red");
+		playBeep("red");
 	}
 }
 sqr.yellow.onclick = function(){
 	if(inputReady == true){
-	playerIn.push("yellow");
-	beep.yellow.play();
-	checkMoves();
+		playerIn.push("yellow");
+		playBeep("yellow");
 	}
 }
 sqr.green.onclick = function(){
 	if(inputReady == true){
-	playerIn.push("green");
-	beep.green.play();
-	checkMoves();
+		playerIn.push("green");
+		playBeep("green");
 	}
+}
+
+function playBeep(color){
+	beep[color].play();
+	checkMoves();
 }
 
 	
