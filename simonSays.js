@@ -57,7 +57,6 @@ function doMove(tileKey){
 	
 }
 
-//called inside event listeners for each square.
 //checks whether each new response from the user (playerIn[j]) matches the corresponding position in colorCode (colorCode[j])
 //If they don't match, you get a 'you lose' message and reset function is called
 //If they do match but the player input isn't the same length as the colorCode, then 1 is added to the j counter so that the next position along will be compared
@@ -103,34 +102,28 @@ playBtn.addEventListener("click", function(){
 
 //event listeners for each square of the game. Checks the game is ready for player input, then pushes the corresponding tile click number
 //into the playerIn array. Plays the corresponding beep noise, then calls checkMoves()
-sqr.blue.onclick = function(){
-	if(inputReady == true){	
-		playerIn.push("blue");
-		playBeep("blue");
-	}
+sqr.blue.onclick = function(){	
+	getInput("blue");
 }
-sqr.red.onclick = function(){
-	if(inputReady == true){	
-		playerIn.push("red");
-		playBeep("red");
-	}
+sqr.red.onclick = function(){	
+	getInput("red");
+
 }
-sqr.yellow.onclick = function(){
-	if(inputReady == true){
-		playerIn.push("yellow");
-		playBeep("yellow");
-	}
+sqr.yellow.onclick = function(){	
+	getInput("yellow");
+
 }
-sqr.green.onclick = function(){
-	if(inputReady == true){
-		playerIn.push("green");
-		playBeep("green");
-	}
+sqr.green.onclick = function(){	
+	getInput("green");
 }
 
-function playBeep(color){
-	beep[color].play();
-	checkMoves();
+
+function getInput(color){
+	if (inputReady == true){
+		playerIn.push(color);
+		beep[color].play();
+		checkMoves();
+	}
 }
 
 	
